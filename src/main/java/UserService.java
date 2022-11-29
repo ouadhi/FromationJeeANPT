@@ -46,6 +46,7 @@ public class UserService {
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
+				
 				User user = new User(resultSet.getLong("id"), resultSet.getString("name"),
 						resultSet.getString("lastname"), resultSet.getString("company"));
 				users.add(user);
@@ -53,6 +54,7 @@ public class UserService {
 			mysql.closeConnection();
 			return users;
 		} catch (Exception e) {
+			System.err.println(e.getMessage());
 			return null;
 		}
 	}

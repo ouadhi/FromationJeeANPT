@@ -5,7 +5,7 @@ import java.sql.SQLException;
 public class MysqlConnection {
 	private Connection connection = null;
 	private String DB_URL = "jdbc:mysql://127.0.0.1:3306/";
-	private String DB_name = "bdd";
+	private String DB_name = "formation_db";
 	private String USER = "root";
 	private String PASSWORD = "root";
 
@@ -13,11 +13,12 @@ public class MysqlConnection {
 		
 		try {
 			// Load JDBC DRIVER CLASS
-			Class c = Class.forName("com.mysql.jdbc.Driver");
+			Class c = Class.forName("com.mysql.cj.jdbc.Driver");
 			// create a connection using ge Connection
 			//
 			this.connection = DriverManager.getConnection(DB_URL + DB_name, USER, PASSWORD);
-
+			
+			System.out.println("connected");
 			return connection;
 
 		} catch (Exception e) {

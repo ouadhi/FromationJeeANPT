@@ -1,9 +1,9 @@
 
 public class User {
-	private long id ; 
-	private String firstname; 
-	private String lastname; 
-	private String company;
+	public long id ; 
+	public String firstname; 
+	public String lastname; 
+	public String company;
 	public User(long id, String firstname, String lastname, String company) {
 		this.id = id;
 		this.firstname = firstname;
@@ -35,6 +35,10 @@ public class User {
 	}
 	public String getCompany() {
 		return company;
+	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", company=" + company + "]";
 	}
 	public void setCompany(String company) {
 		this.company = company;

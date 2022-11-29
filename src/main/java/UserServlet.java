@@ -2,6 +2,7 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,10 +16,16 @@ import javax.servlet.http.HttpServletResponse;
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+   private UserService userService ;  
    
     public UserServlet() {
         super();
       
+    }
+    
+    public  void init () {
+    	System.out.println("creatte service");
+    	userService  =  new UserService() ; 
     }
 
 	
@@ -54,11 +61,15 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 	}
 
 	
-	private void showUsers(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		PrintWriter out   = response.getWriter() ;  
+	private void showUsers(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		List<User> listUser = userService.selectAllUsers();
 		
-		out.println("show  users ");
+		request.setAttribute("listUser", listUser);
+		
+		request.getRequestDispatcher("listuser.jsp")
+		.forward(request, response);
 	}
+	
 
 
 
@@ -74,8 +85,11 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 	}
 
 
-	private void createNewUser(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void createNewUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Redirect 
+		request.getRequestDispatcher("create-user-form.jsp")
+		.forward(request, response);
+		
 		
 	}
 
