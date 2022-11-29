@@ -7,7 +7,8 @@ public class UserService {
 
 	private final String insertQuery = "INSERT INTO `USER` (`name`, `lastname`, `company`) " + "VALUES (?,?,?)";
 	private final String selectAllQuery = "SELECT * FROM USER";
-	private final String updateQuery = "UPDATE USER SET name = ? , lastname =?  , company = ? WHERE id =?" ;  
+	private final String updateQuery = "UPDATE USER SET name = ? , lastname =?  , company = ? WHERE id =?" ; 
+	private final String  deletQuery = "DELETE USER WHERE id =?";
 
 	public UserService() {
 	}
@@ -16,7 +17,6 @@ public class UserService {
 		MysqlConnection mysql = new MysqlConnection();
 
 		try {
-
 			PreparedStatement statement = mysql.createConnection().prepareStatement(this.insertQuery);
 
 			statement.setString(0, user.getFirstname());
@@ -80,16 +80,16 @@ public class UserService {
 	}
 		
 		public boolean deleteUser (long idUser ) {
-			boolean updated ; 
+			boolean deleted ; 
 			try {
 				MysqlConnection mysql = new MysqlConnection();
 				PreparedStatement statement  = mysql.createConnection()
 						.prepareStatement(this.deletQuery) ;  
 				statement.setLong(0, idUser);
 				
-				 updated =  statement.executeUpdate()>0 ; 
+				 deleted =  statement.executeUpdate()>0;
 				 mysql.closeConnection();
-				 return  updated ; 
+				 return  deleted ; 
 				
 			}catch(Exception e){
 				System.out.println(e);
