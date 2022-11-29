@@ -37,6 +37,9 @@ public class UserServlet extends HttpServlet {
 			case "/create":
 				createNewUser(request ,response)  ;  
 				break;
+			case "/insert":
+				insertNewUser(request ,response)  ;  
+				break;
 			case "/update":
 				updateUser(request ,response)  ;  
 				break;
@@ -54,7 +57,7 @@ public class UserServlet extends HttpServlet {
 			// TODO: handle exception
 		}
 	}
-	
+
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		doGet(request, response);
@@ -89,6 +92,21 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		// Redirect 
 		request.getRequestDispatcher("create-user-form.jsp")
 		.forward(request, response);
+	}
+	
+	
+	private void insertNewUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String firstName =  request.getParameter("firstname") ;
+		String lastName =  request.getParameter("lastname") ;
+		String company =  request.getParameter("company") ;
+		
+		User user = new User(firstName, lastName, company) ; 
+		
+		System.out.println(user.toString());
+		 
+		userService.insterUser(user);
+		
+		response.sendRedirect("list");
 		
 		
 	}

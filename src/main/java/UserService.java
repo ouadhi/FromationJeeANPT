@@ -19,9 +19,9 @@ public class UserService {
 		try {
 			PreparedStatement statement = mysql.createConnection().prepareStatement(this.insertQuery);
 
-			statement.setString(0, user.getFirstname());
-			statement.setString(1, user.getLastname());
-			statement.setString(2, user.getCompany());
+			statement.setString(1, user.getFirstname());
+			statement.setString(2, user.getLastname());
+			statement.setString(3, user.getCompany());
 
 			System.out.println(statement);
 
@@ -66,10 +66,10 @@ public class UserService {
 			MysqlConnection mysql = new MysqlConnection();
 			PreparedStatement statement  = mysql.createConnection()
 					.prepareStatement(this.updateQuery) ;  
-			statement.setString(0, user.getFirstname());
-			statement.setString(1, user.getLastname());
-			statement.setString(2, user.getCompany());
-			statement.setLong(3, user.getId());
+			statement.setString(1, user.getFirstname());
+			statement.setString(2, user.getLastname());
+			statement.setString(3, user.getCompany());
+			statement.setLong(4, user.getId());
 			
 			 updated =  statement.executeUpdate()>0 ; 
 			 mysql.closeConnection();

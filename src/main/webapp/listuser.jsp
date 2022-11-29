@@ -62,7 +62,7 @@
                                     <td>
                                         <c:out value="${user.company}" />
                                     </td>
-                                    <td><a href="edit?id=<c:out value='${user.id}' />">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
+                                    <td><a href="update?id=<c:out value='${user.id}' />">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
                                 </tr>
                             </c:forEach>
                             <!-- } -->
