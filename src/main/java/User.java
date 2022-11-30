@@ -15,6 +15,8 @@ public class User {
 		this.lastname = lastname;
 		this.company = company;
 	}
+	
+	
 	public long getId() {
 		return id;
 	}
