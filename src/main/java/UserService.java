@@ -9,7 +9,7 @@ public class UserService {
 	private final String selectAllQuery = "SELECT * FROM USER";
 	private final String selectUserById = "SELECT * FROM USER WHERE id =?";
 	private final String updateQuery = "UPDATE USER SET name = ? , lastname =?  , company = ? WHERE id =?" ; 
-	private final String deletQuery = "DELETE USER WHERE id =?";
+	private final String deletQuery = "DELETE FROM USER WHERE id = ?";
 
 	public UserService() {
 	}
@@ -113,7 +113,7 @@ public class UserService {
 				MysqlConnection mysql = new MysqlConnection();
 				PreparedStatement statement  = mysql.createConnection()
 						.prepareStatement(this.deletQuery) ;  
-				statement.setLong(0, idUser);
+				statement.setLong(1, idUser);
 				
 				 deleted =  statement.executeUpdate()>0;
 				 mysql.closeConnection();

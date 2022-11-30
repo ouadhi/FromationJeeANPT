@@ -89,8 +89,12 @@ public class UserServlet extends HttpServlet {
 		request.getRequestDispatcher("listuser.jsp").forward(request, response);
 	}
 
-	private void deleteUser(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		long id  = Long.parseLong(request.getParameter("id"));
+		
+		userService.deleteUser(id) ;
+		
+		response.sendRedirect("list");
 
 	}
 
