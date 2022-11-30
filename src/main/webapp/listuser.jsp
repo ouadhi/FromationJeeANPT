@@ -9,6 +9,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+   if(session.getAttribute("username")== null){
+	   response.sendRedirect("login.jsp") ;
+   }
+%>
 <header>
                 <nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
                     <div>
